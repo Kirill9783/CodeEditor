@@ -2,9 +2,7 @@
   <div class="flex flex-col min-h-screen dark dark:bg-gray-800">
     <AppHeader />
     <main>
-      <AppHero />
-      <AppFeatures />
-      <AppNewsletter />
+      <NuxtPage />
     </main>
     <AppFooter />
   </div>

@@ -16,12 +16,12 @@
       Unlock your coding potential with tailored settings, shortcuts, and expert tutorials.
     </p>
     <div class="mt-6 flex gap-x-2 sm:mt-8">
-      <a href="#"
-         class="px-6 py-2 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700 sm:px-8 sm:py-3 sm:text-lg sm:rounded-lg">Explore</a>
-      <a href="#features"
+      <NuxtLink to="/playlists"
+         class="px-6 py-2 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700 sm:px-8 sm:py-3 sm:text-lg sm:rounded-lg">Explore</NuxtLink>
+      <NuxtLink to="#features"
          class="px-6 py-2 font-semibold rounded-md bg-gray-100 text-gray-900 hover:bg-gray-200 sm:px-8 sm:py-3 sm:text-lg sm:rounded-lg">
         Learn More
-      </a>
+      </NuxtLink>
     </div>
   </div>
 </template>
