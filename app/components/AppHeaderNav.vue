@@ -4,14 +4,15 @@
 <template>
   <nav class="hidden sm:block grow">
     <ul class="flex items-center gap-x-8">
-      <AppHeaderNavItem class="mr-auto" link="/playlists">Library</AppHeaderNavItem>
-      <AppHeaderNavItem link="/login">log In</AppHeaderNavItem>
-      <AppHeaderNavItem
-          linkClasses="px-3 py-2 font-semibold rounded-md bg-indigo-600 text-indigo-50 hover:bg-indigo-700"
-          link="/register"
-      >
-        Sign Up
-      </AppHeaderNavItem>
+      <li class="mr-auto">
+        <AppHeaderNavLink to="/playlists">Library</AppHeaderNavLink>
+      </li>
+      <li>
+        <AppHeaderNavLink to="/login">log In</AppHeaderNavLink>
+      </li>
+      <li>
+        <AppButton to="/register">Sign Up</AppButton>
+      </li>
     </ul>
   </nav>
 </template>

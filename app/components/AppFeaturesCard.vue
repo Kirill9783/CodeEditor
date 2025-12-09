@@ -5,13 +5,14 @@ defineProps<{
     icon: string,
     title: string,
     description: string,
+    link: string,
   }
 }>();
 
 </script>
 
 <template>
-  <a href="#">
+  <NuxtLink :to="features.link">
     <article
         class="bg-white rounded-md border border-gray-200 p-4 hover:border-indigo-600 h-full sm:rounded-xl sm:p-6 dark:hover:border-indigo-400 dark:bg-gray-800 dark:border-black">
       <header class="flex flex-col gap-y-3">
@@ -22,7 +23,7 @@ defineProps<{
         {{ features.description }}
       </p>
     </article>
-  </a>
+  </NuxtLink>
 </template>
 
 <style scoped></style>

@@ -1,9 +1,14 @@
 <script setup lang="ts">
 
+interface Item {
+  heading: string
+  link: string
+}
+
 defineProps<{
   list: {
     heading: string;
-    items: string[];
+    items: Item[];
   }
 }>();
 
@@ -13,7 +18,7 @@ defineProps<{
   <div class="flex flex-col gap-y-3 sm:gap-y-4">
     <AppFooterListHeading>{{ list.heading }}</AppFooterListHeading>
     <ul class="flex flex-col gap-y-1 sm:gap-y-2">
-      <AppFooterListItem v-for="item in list.items" :key="item">{{ item }}</AppFooterListItem>
+      <AppFooterListItem v-for="item in list.items" :key="item.link" :link="item.link">{{ item.heading }}</AppFooterListItem>
     </ul>
   </div>
 </template>
