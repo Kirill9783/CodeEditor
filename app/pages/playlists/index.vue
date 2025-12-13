@@ -8,7 +8,7 @@
           heading="Playlists"
           subheading="Learn how to make VSCode work for you with our comprehensive guides and tutorials."
       />
-      <div class="container grid gap-y-4 sm:gap-8 grid-cols-1 md:gap-x-6 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4">
+      <div class="container grid gap-y-4 sm:gap-8 grid-cols-1 items-start md:gap-x-6 md:grid-cols-3 xl:gap-x-8 xl:grid-cols-4">
         <PlaylistFilters />
         <PlaylistGrid />
       </div>

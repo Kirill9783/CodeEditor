@@ -25,7 +25,7 @@ const lesson = useLessonsStore().getLessonById(props.playlist.lessonIds[0]!)
         {{ playlist.description }}
       </p>
       <footer class="mt-auto">
-        <ul class="flex flex-wrap gap-x-2">
+        <ul class="flex flex-wrap gap-x-2 gap-y-1">
           <li v-for="tag in tags" :key="tag.id"
               class="px-2 py-1 text-xs font-medium text-indigo-600 rounded-full bg-indigo-50 dark:bg-indigo-600 dark:text-indigo-50 dark:bg-indigo-600 dark:text-indigo-50">
             {{  tag.name }}
