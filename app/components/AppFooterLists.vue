@@ -1,54 +1,56 @@
 <script setup lang="ts">
 
+import {usePlaylistsStore} from "~/stores/playlists";
+import {useLessonsStore} from "~/stores/lessons";
+
+const {playlists} = usePlaylistsStore();
+const {getLessonById} = useLessonsStore();
+
 const lists = [
   {
     heading: 'Popular Playlists',
-    items: [
-      {
-        heading: 'Prettier',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-      {
-        heading: 'GitLens',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-      {
-        heading: 'Live Share',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-    ]
+    items: playlists.slice(4, 7).map((playlist) => {
+
+      if (!playlist.lessonIds[0]) {
+        throw createError({statusCode: 404, message: `Lesson IDs not found`});
+      }
+      const lesson = getLessonById(playlist.lessonIds[0]);
+
+      return {
+        heading: playlist.title,
+        link: getPlaylistLink(playlist, lesson),
+      }
+    })
   },
   {
     heading: 'Configurations',
-    items: [
-      {
-        heading: 'Settings',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-      {
-        heading: 'Keyboard Shortcuts',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-      {
-        heading: 'Code Snippets',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
-      },
-    ]
+    items: playlists.slice(0, 3).map((playlist) => {
+
+      if (!playlist.lessonIds[0]) {
+        throw createError({statusCode: 404, message: `Lesson IDs not found`});
+      }
+      const lesson = getLessonById(playlist.lessonIds[0]);
+
+      return {
+        heading: playlist.title,
+        link: getPlaylistLink(playlist, lesson),
+      }
+    })
   },
   {
     heading: 'Social',
     items: [
       {
         heading: 'YouTube',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
+        link: 'https://youtube.com'
       },
       {
         heading: 'Telegram',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
+        link: 'https://telegram.org'
       },
       {
         heading: 'GitHub',
-        link: '/playlists/prettier/lessons/getting-started-with-prettier'
+        link: 'https://github.com'
       },
     ]
   }

@@ -5,7 +5,12 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
     ssr: true,
-    modules: ['@nuxtjs/google-fonts', '@nuxt/icon'],
+    modules: ['@nuxtjs/google-fonts', '@nuxt/icon', '@pinia/nuxt'],
+    pinia: {
+        storesDirs: [
+            './app/stores/**'
+        ]
+    },
     css: ['~/assets/css/main.css'],
 
     vite: {
