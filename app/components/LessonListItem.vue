@@ -1,11 +1,9 @@
 <script setup lang="ts">
 
+import type {NumberedLesson} from "~/stores/lessons";
+
 const props = defineProps<{
-  lesson: {
-    number: number;
-    title: string;
-    duration: string;
-  }
+  lesson: NumberedLesson
 }>();
 
 const playlistSlug = useRoute().params.playlistSlug;

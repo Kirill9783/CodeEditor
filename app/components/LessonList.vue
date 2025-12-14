@@ -1,22 +1,19 @@
 <script setup lang="ts">
 
-const lessons = [
-  {
-    number: 1,
-    title: 'Getting Started with Prettier',
-    duration: '5:30'
-  },
-  {
-    number: 2,
-    title: 'Advanced GitLens Features',
-    duration: '8:45'
-  },
-  {
-    number: 3,
-    title: 'Debugging with ESLint',
-    duration: '6:15'
-  }
-]
+import {type NumberedLesson, useLessonsStore} from "~/stores/lessons";
+
+const props = defineProps<{ lessonIds: number[] }>();
+
+const lessonsStore = useLessonsStore();
+
+const lessons = computed(() => {
+  return lessonsStore.getLessonsByIds(props.lessonIds).map((lesson, index) => {
+    return {
+      ...lesson,
+      number: index + 1,
+    }
+  })
+})
 
 </script>
 
@@ -24,7 +21,7 @@ const lessons = [
   <ul class="flex flex-col gap-y-1">
     <LessonListItem
       v-for="lesson in lessons"
-      :key="lesson.number"
+      :key="lesson.id"
       :lesson="lesson"
     />
   </ul>

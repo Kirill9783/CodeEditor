@@ -1,15 +1,30 @@
 <script setup lang="ts">
 import {usePlaylistsStore} from "~/stores/playlists";
+import {useTagsStore} from "~/stores/tags";
 
 const playlistsStore = usePlaylistsStore();
+const tagsStore = useTagsStore();
 
 const route = useRoute();
 const router = useRouter();
 
-playlistsStore.searchQuery = route.query.search ? (route.query.search as string).trim() : '';
+playlistsStore.searchQuery = route.query.search ? String(route.query.search).trim() : '';
 
-watch(() => playlistsStore.searchQuery, (searchQuery) => {
-      router.replace({query: searchQuery ? {search: searchQuery} : {}});
+tagsStore.selectedTadIds = route.query.tags ? (route.query.tags as string).split(',').map(Number) : [];
+
+watch(() => [playlistsStore.searchQuery, tagsStore.selectedTadIds] as const,
+    ([searchQuery, selectedTadIds]) => {
+      const query: Record<string, string> = {}
+
+      if (searchQuery) {
+        query.search = searchQuery;
+      }
+
+      if (selectedTadIds.length > 0) {
+        query.tags = selectedTadIds.join(',');
+      }
+
+      router.replace({ query });
     },
     {
       immediate: true,
