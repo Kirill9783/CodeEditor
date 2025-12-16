@@ -409,9 +409,16 @@ export const useLessonsStore = defineStore('lessons', () => {
         return lessons.value.filter((lesson) => ids.includes(lesson.id))
     }
 
+    function getLessonBySlug(slug: string) {
+        return lessons.value.find((lesson) =>
+            slugify(lesson.title) === slug
+        )
+    }
+
     return {
         lessons,
         getLessonById,
         getLessonsByIds,
+        getLessonBySlug
     }
 })

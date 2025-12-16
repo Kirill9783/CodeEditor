@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import {type NumberedLesson, useLessonsStore} from "~/stores/lessons";
+import {useLessonsStore} from "~/stores/lessons";
 
 const props = defineProps<{ lessonIds: number[] }>();
 

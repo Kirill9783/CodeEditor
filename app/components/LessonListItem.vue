@@ -24,7 +24,9 @@ const linkClasses = computed(() => [
     <NuxtLink :to="`/playlists/${playlistSlug}/lessons/${lessonSlug}`"
               :class="linkClasses">
       <span class="text-sm font-medium truncate sm:text-base">{{ lesson.number }}. {{ lesson.title }}</span>
-      <span class="text-sm text-gray-500 sm:text-base">{{ lesson.duration }}</span>
+      <span class="text-sm text-gray-500 sm:text-base">
+        {{ formatDuration(lesson.duration) }}
+      </span>
     </NuxtLink>
   </li>
 </template>

@@ -7,7 +7,7 @@ const route = useRoute();
 const playlist = usePlaylistsStore().getPlaylistBySlug(route.params.playlistSlug as string);
 
 if (!playlist) {
-  throw createError({statusCode: 404, statusMessage: `Playlist with slug "${route.params.playlistSlug}" not found`});
+  throw404('Playlist not found');
 }
 
 </script>
