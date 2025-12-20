@@ -5,7 +5,16 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: true},
     ssr: true,
-    modules: ['@nuxtjs/google-fonts', '@nuxt/icon', '@pinia/nuxt'],
+    modules: [
+      '@nuxtjs/google-fonts',
+      '@nuxt/icon',
+      '@pinia/nuxt',
+      'nuxt-auth-utils',
+      '@nuxthub/core-nightly'
+    ],
+    hub: {
+        db: 'sqlite'
+    },
     pinia: {
         storesDirs: [
             './app/stores/**'

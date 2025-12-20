@@ -4,15 +4,41 @@ import AppButton from "~/components/AppButton.vue";
 
 definePageMeta({
   layout: 'auth',
-})
+});
+
+const email = ref('');
+const password = ref('');
+const passwordConfirmation = ref('');
+
+
+//15-19 Проверяем если пользователь зарегистрирован, то перенаправляем его, если он жмет кнопку регистрации
+const { loggedIn, fetch: fetchUserSession } = useUserSession();
+
+if (loggedIn.value) {
+  navigateTo('/playlists')
+}
+
+async function handleRegister() {
+  await $fetch('/api/register', {
+    method: 'POST',
+    body: {
+      email: email.value,
+      password: password.value
+    }
+  })
+
+  await fetchUserSession();
+
+  await navigateTo('/playlists');
+}
 
 </script>
 
 <template>
-      <form class="flex flex-col gap-y-4 sm:gap-y-6">
-        <AppFormField type="email" id="email">Email</AppFormField>
-        <AppFormField type="password" id="password">Password</AppFormField>
-        <AppFormField type="password" id="passwordConfirmation">Password Confirmation</AppFormField>
+      <form @submit.prevent="handleRegister" class="flex flex-col gap-y-4 sm:gap-y-6">
+        <AppFormField v-model.trim="email" type="email" id="email">Email</AppFormField>
+        <AppFormField v-model="password" type="password" id="password">Password</AppFormField>
+        <AppFormField v-model="passwordConfirmation" type="password" id="passwordConfirmation">Password Confirmation</AppFormField>
         <AppButton class="mt-2 sm:mt-1">Sign Up</AppButton>
       </form>
       <p class="mt-6 text-sm text-center text-gray-600 sm:mt-8 dark:text-gray-300">
