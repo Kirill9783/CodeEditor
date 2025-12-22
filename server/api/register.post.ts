@@ -1,6 +1,6 @@
 import { db, schema } from 'hub:db'
 import { users } from "hub:db:schema";
-
+import { validateEmail, validatePassword } from "~/utils/validation";
 
 //Вставляем пользователя вручную
 // export default eventHandler(async (event) => {
@@ -15,6 +15,24 @@ import { users } from "hub:db:schema";
 
 export default eventHandler(async (event) => {
   const { email, password } = await readBody(event);
+
+  const emailError = validateEmail(email);
+
+  if (emailError) {
+    throw createError({
+      statusCode: 400,
+      message: emailError
+    })
+  }
+
+  const passwordError = validatePassword(password);
+
+  if (passwordError) {
+    throw createError({
+      statusCode: 400,
+      message: passwordError
+    })
+  }
 
   const hashedPassword = await hashPassword(password);
 
