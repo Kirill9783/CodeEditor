@@ -11,6 +11,7 @@ defineOptions({
 
 defineProps<{
   id: string;
+  error?: string;
 }>();
 
 </script>
@@ -21,6 +22,7 @@ defineProps<{
       <slot />
     </AppLabel>
     <AppInput :id="id" v-bind="$attrs" />
+    <p v-if="error" class="text-red-600 text-sm dark:text-red-400">{{ error }}</p>
   </div>
 </template>
 
